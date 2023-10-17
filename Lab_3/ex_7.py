@@ -1,6 +1,9 @@
 # 7.Write a function that receives a variable number of sets and returns a dictionary with the following operations
 # from all sets two by two: reunion, intersection, a-b, b-a. The key will have the following form:
 # "a op b", where a and b are two sets, and op is the applied operator: |, &, -.
+from ex_1 import ex_1
+
+
 def ex_7(*sets):
     result = {}
     input_sets = []
