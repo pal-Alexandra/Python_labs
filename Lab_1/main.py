@@ -21,7 +21,8 @@ def greatest_common_divisor():
 print("EXERCICE 1")
 greatest_common_divisor()
 
-
+# string.count(vowel) Return the number of times the value vowel appears in the string:
+# sm () Add all items in a tuple, and return the result
 # 2. Write a script that calculates how many vowels are in a string.
 def count_vowels(string):
     vowels = "aeiouAEIOU"
@@ -47,7 +48,7 @@ def count_occurrences(substring, string):
             start = pos + 1
             count += 1
         else:
-            break;
+            break
 
     print(substring + " appears in " + string + " for " + str(count) + " times")
 
@@ -123,10 +124,11 @@ def spiral_order(matrix):
 
 
 print("EXERCICE 5")
-input_matrix = [['f', 'i', 'r', 's'],
-          ['n', '_', 'l', 't'],
-          ['o', 'b', 'a', '_'],
-          ['h', 't', 'y', 'p']]
+input_matrix = [['f', 'i', 'r', 's', 'B'],
+          ['n', '_', 'l', 't', 'B'],
+          ['o', 'b', 'a', '_', 'B'],
+          ['h', 't', 'y', 'p', 'B'],
+        ['h', 't', 'y', 'p', 'B']]
 spiral_order(input_matrix)
 
 
@@ -226,12 +228,13 @@ compute_the_most_common_letter('Ciresica are mere')
 
 # 10. Write a function that counts how many words exists in a text.
 # A text is considered to be form out of words that are separated by only ONE space.
-# For example: "I have Python exam" has 4 words.
+# For example: "I have  Python exam" has 4 words.
 
 def count_words(string):
     words = len(string.split())
     print('The input: /' + string + '/ has: ' + str(words) + ' words')
+    print(string.split())
 
 
 print('EXERCICE 10')
-count_words('I have Python exam')
+count_words('I have       Python exam')
