@@ -22,7 +22,7 @@ print("EXERCICE 1")
 greatest_common_divisor()
 
 # string.count(vowel) Return the number of times the value vowel appears in the string:
-# sm () Add all items in a tuple, and return the result
+# sum () Add all items in a tuple, and return the result
 # 2. Write a script that calculates how many vowels are in a string.
 def count_vowels(string):
     vowels = "aeiouAEIOU"
