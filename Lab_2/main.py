@@ -123,10 +123,10 @@ def exactly_x_time_list(x, *lists):
     for list in lists:
         input_lists += list
 
-    for list in input_lists:
-        if list not in result:
-            if input_lists.count(list) == x:
-                result.append(list)
+    for item in input_lists:
+        if item not in result:
+            if input_lists.count(item) == x:
+                result.append(item)
     return result
 
 
@@ -292,14 +292,14 @@ def order_list(tuples_list):
     count_tuples = len(tuples_list)
 
     # bubble sort
-    for tuple in range(count_tuples): #parcurg tuplele
-        for j in range(0, count_tuples - tuple - 1):
-            char1 = tuples_list[tuple][1][2] #caracterul al 3-lea din al doile string din tuplul curent
-            char2 = tuples_list[j + 1][1][2]
+    for i in range(count_tuples - 1): #parcurg tuplele
+        for j in range(i + 1, count_tuples):
+            char1 = tuples_list[i][1][2] #caracterul al 3-lea din al doile string din tuplul curent
+            char2 = tuples_list[j][1][2]
             if ord(char1) > ord(char2):
-                aux = tuples_list[tuple]
-                tuples_list[tuple] = tuples_list[tuple + 1]
-                tuples_list[tuple + 1] = aux
+                aux = tuples_list[i]
+                tuples_list[i] = tuples_list[j]
+                tuples_list[j] = aux
 
     return tuples_list
 
