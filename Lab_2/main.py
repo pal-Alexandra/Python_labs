@@ -92,7 +92,8 @@ print(compose(["do", "re", "mi", "fa", "sol"], [1, -3, 4, 2], 2))
 
 def replace_main_diagonal(matrix):
     for i in range(len(matrix)):
-        matrix[i][i] = 0
+        for j in range(0, i):
+            matrix[i][j] = 0
     return matrix
 
 
