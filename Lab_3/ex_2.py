@@ -9,7 +9,7 @@ def ex_2(string):
             if char not in occurences:
                 occurences[char] = 1
             else:
-                occurences[char] +=1
+                occurences[char] += 1
     return occurences
 
 print("EXERCICE 2")
