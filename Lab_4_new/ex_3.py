@@ -16,10 +16,13 @@ class Matrix:
         self.matrix = [[None for i in range(M)] for j in range(N)]
 
     def get(self, i, j):
+        if i >= self.N or j >= self.M or i < 0 or j < 0:
+            print("Index out of bounds")
+            return None
         return self.matrix[i][j]
 
     def set(self, i, j, value):
-        if i < self.N and j < self.M:
+        if self.N > i >= 0 and self.M > j >= 0:
             self.matrix[i][j] = value
         else:
             print("Index out of bounds")
