@@ -25,13 +25,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Ale/Facultate/An III sem I/Python_labs/Lab_4_new&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Ale/Facultate/An III sem I/Artificial_Intelligence/Tema3"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ex_1" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Lab_4_new" />
