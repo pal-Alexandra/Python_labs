@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ede76ab-59fb-47ef-9374-935bbca023d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Lab_4_new/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_4_new/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex_6.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex_6.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +28,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Ale/Facultate/An III sem I/Python_labs/Lab_5"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Ale/Facultate/An III sem I/Python_labs/Lab_5&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ex_1" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Lab_5" />

@@ -9,6 +9,7 @@ class Animal:
         self.name = name
         self.age = age
         self.habitat = habitat
+
     def get_name(self):
         return self.name
 
