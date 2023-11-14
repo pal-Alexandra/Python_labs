@@ -1,13 +1,14 @@
 # 3. Create a Python script that calculates the total size of all files in a directory provided as a command line argument. The script should:
 
 
-
-# Use the sys module to read the directory path from the command line.
-# Utilize the os module to iterate through all the files in the given directory and its subdirectories.
-# Sum up the sizes of all files and display the total size in bytes.
-# Implement exception handling for cases like the directory not existing, permission errors, or other file access issues.
+# Use the sys module to read the directory path from the command line. Utilize the os module to iterate through all
+# the files in the given directory and its subdirectories. Sum up the sizes of all files and display the total size
+# in bytes. Implement exception handling for cases like the directory not existing, permission errors, or other file
+# access issues.
 
 import os
+
+
 def files_from_directory(directory_path):
     files_list = []
     for root, directories, files in os.walk(directory_path):
@@ -18,7 +19,6 @@ def files_from_directory(directory_path):
 
 
 def main():
-
     # directory_path = sys.argv[1]
     directory_path = "D:\Ale\Facultate\An III sem I\AI"
 
