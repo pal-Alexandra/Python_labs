@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e022983-b0cf-4314-9a06-cd010cac499f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ex_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab_4_new/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_4_new/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lab_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab_5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/ex_3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +33,8 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Ale/Facultate/An III sem I/Python_labs/Test_simulation"
   }
 }]]></component>
   <component name="RunManager">
