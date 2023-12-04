@@ -2,6 +2,8 @@ import json
 import os
 import sys
 
+from SnakeGame import SnakeGame
+
 
 def read_file(file_name):
 
@@ -32,6 +34,8 @@ if __name__ == '__main__':
             raise FileNotFoundError(f"{file} is not a json file")
 
         window_width, window_height, obstacles = read_file(file)
+
+        snake_game = SnakeGame(window_width, window_height, obstacles)
 
     except FileNotFoundError as e:
         print(e)
