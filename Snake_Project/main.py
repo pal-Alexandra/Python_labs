@@ -1,16 +1,38 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import json
+import os
+import sys
 
 
-# Press the green button in the gutter to run the script.
+def read_file(file_name):
+
+    try:
+        with open(file_name, 'r') as f:
+            data = json.load(file_name)
+            width = data['window_width']
+            height = data['window_height']
+            obstacles = data.get('obstacles', [])
+
+        return width, height, obstacles
+
+    except PermissionError as e:
+        print(f"Error ar reading file: {file_name}")
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    file = sys.argv[1]
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    try:
+        if not os.path.exists(file):
+            raise FileNotFoundError(f"File {file} not found")
+
+        if not os.path.isfile(file):
+            raise FileNotFoundError(f"{file} is not a file")
+
+        if not file.endswith('.json'):
+            raise FileNotFoundError(f"{file} is not a json file")
+
+        window_width, window_height, obstacles = read_file(file)
+
+    except FileNotFoundError as e:
+        print(e)
+
