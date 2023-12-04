@@ -3,6 +3,10 @@ import turtle
 
 class SnakeGame:
     def __init__(self, width, height, obstacles):
+        self.pen = None
+        self.head = None
+        self.food = None
+        self.window = None
         self.width = width
         self.height = height
         self.obstacles = obstacles
@@ -11,11 +15,11 @@ class SnakeGame:
         self.init_pen()
 
     def init_board(self):
-        window = turtle.Screen()
-        window.title("Snake Game")
-        window.bgcolor("green")
-        window.setup(width=self.width, height=self.height)
-        window.tracer(0)
+        self.window = turtle.Screen()
+        self.window.title("Snake Game")
+        self.window.bgcolor("green")
+        self.window.setup(width=self.width, height=self.height)
+        self.window.tracer(0)
 
         for obstacle in self.obstacles:
             x, y = obstacle['x'], obstacle['y']
@@ -26,30 +30,33 @@ class SnakeGame:
             obstacle.penup()
             obstacle.goto(x, y)
 
-        food = turtle.Turtle()
-        food.speed(0)
-        food.shape("circle")
-        food.color("yellow")
-        food.penup()
-        food.goto(0, 100)
+        self.food = turtle.Turtle()
+        self.food.speed(0)
+        self.food.shape("circle")
+        self.food.color("yellow")
+        self.food.penup()
+        self.food.goto(0, 100)
 
     def init_snake(self):
-        head = turtle.Turtle()
-        head.speed(0)
-        head.shape("square")
-        head.color("black")
-        head.penup()
-        head.goto(0, 0)
-        head.direction = "stop"
+        self.head = turtle.Turtle()
+        self.head.speed(0)
+        self.head.shape("square")
+        self.head.color("black")
+        self.head.penup()
+        self.head.goto(0, 0)
+        self.head.direction = "stop"
 
     def init_pen(self):
-        pen = turtle.Turtle()
-        pen.speed(0)
-        pen.shape("square")
-        pen.color("white")
-        pen.penup()
-        pen.hideturtle()
-
+        self.pen = turtle.Turtle()
+        self.pen.speed(0)
+        self.pen.shape("square")
+        self.pen.color("white")
+        self.pen.penup()
+        self.pen.hideturtle()
         x = 0
         y = self.height // 2 - 40
-        pen.goto(x, y)
+        self.pen.goto(x, y)
+    
+    def start_game(self):
+        self.window.listen()
+        self.window.update()

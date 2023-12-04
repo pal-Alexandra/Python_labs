@@ -9,9 +9,9 @@ def read_file(file_name):
 
     try:
         with open(file_name, 'r') as f:
-            data = json.load(file_name)
-            width = data['window_width']
-            height = data['window_height']
+            data = json.load(f)
+            width = data['width']
+            height = data['height']
             obstacles = data.get('obstacles', [])
 
         return width, height, obstacles
@@ -36,6 +36,8 @@ if __name__ == '__main__':
         window_width, window_height, obstacles = read_file(file)
 
         snake_game = SnakeGame(window_width, window_height, obstacles)
+        snake_game.start_game()
+        snake_game.window.mainloop()
 
     except FileNotFoundError as e:
         print(e)
