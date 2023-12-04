@@ -1,3 +1,4 @@
+import time
 import turtle
 
 
@@ -13,6 +14,11 @@ class SnakeGame:
         self.init_board()
         self.init_snake()
         self.init_pen()
+
+        self.score = 0
+        self.highest_score = 0
+
+        self.delay = 0.1
 
     def init_board(self):
         self.window = turtle.Screen()
@@ -56,7 +62,51 @@ class SnakeGame:
         x = 0
         y = self.height // 2 - 40
         self.pen.goto(x, y)
-    
+
+    def go_up(self):
+        if self.head.direction != "down":
+            self.head.direction = "up"
+
+    def go_down(self):
+        if self.head.direction != "up":
+            self.head.direction = "down"
+
+    def go_left(self):
+        if self.head.direction != "right":
+            self.head.direction = "left"
+
+    def go_right(self):
+        if self.head.direction != "left":
+            self.head.direction = "right"
+
+    def configure_key_bindings(self):
+        self.window.onkeypress(self.go_up, "w")
+        self.window.onkeypress(self.go_down, "s")
+        self.window.onkeypress(self.go_left, "a")
+        self.window.onkeypress(self.go_right, "d")
+
+    def move(self):
+        if self.head.direction == "up":
+            y = self.head.ycor()
+            self.head.sety(y + 20)
+
+        if self.head.direction == "down":
+            y = self.head.ycor()
+            self.head.sety(y - 20)
+
+        if self.head.direction == "left":
+            x = self.head.xcor()
+            self.head.setx(x - 20)
+
+        if self.head.direction == "right":
+            x = self.head.xcor()
+            self.head.setx(x + 20)
+
     def start_game(self):
         self.window.listen()
-        self.window.update()
+        self.configure_key_bindings()
+
+        while True:
+            self.window.update()
+            self.move()
+            time.sleep(self.delay)
