@@ -20,6 +20,8 @@ class SnakeGame:
         self.score = 0
         self.highest_score = 0
 
+        self.game_is_over = False
+
         self.delay = 0.1
 
     def init_board(self):
@@ -116,26 +118,66 @@ class SnakeGame:
 
     def end_game(self):
         self.pen.clear()
-        self.pen.write(f"GAME OVER!")
+        self.pen.write(f"GAME OVER! Highest Score = {self.highest_score}", align="center",
+                       font=("Courier", 24, "normal"))
+
+        self.pen.goto(0, -50)
+        self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center", font=("Courier", 24, "normal"))
+
+        self.window.listen()
+        def restart_game():
+            time.sleep(1)
+            self.head.goto(0, 0)
+            self.head.direction = "stop"
+
+            # hide the segments
+            for segment in self.segments:
+                segment.goto(1000, 1000)
+            self.segments.clear()
+
+            # reset score
+            self.score = 0
+
+            # reset delay
+            self.delay = 0.1
+
+            # reset pen position
+            x = 0
+            y = self.height // 2 - 40
+            self.pen.goto(x, y)
+            self.pen.clear()
+            self.pen.write(f"Score: {self.score}  Highest Score: {self.highest_score}", align="center",
+                           font=("Courier", 24, "normal"))
+
+            self.start_game()
+
+        def exit_game():
+            self.window.bye()
+            exit(0)
+
+        self.window.onkeypress(restart_game, "c")
+        self.window.onkeypress(exit_game, "e")
 
     def start_game(self):
         self.window.listen()
         self.configure_key_bindings()
 
-        while True:
+        self.game_is_over = False
+
+        while not self.game_is_over:
             self.window.update()
-            # self.move()
-            # time.sleep(self.delay)
 
             # collision with border
             if self.is_collision_with_border():
                 time.sleep(1)
+                self.game_is_over = True
                 self.end_game()
 
             # collision with obstacles
             for obstacle in self.obstacles:
                 if self.is_collision(obstacle["x"], obstacle["y"]):
                     time.sleep(1)
+                    self.game_is_over = True
                     self.end_game()
 
             # collision with food
@@ -155,6 +197,7 @@ class SnakeGame:
 
                 self.delay -= 0.001
 
+                # increase score
                 self.score += 10
                 if self.score > self.highest_score:
                     self.highest_score = self.score
