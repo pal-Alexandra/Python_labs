@@ -1,11 +1,13 @@
 import time
 import turtle
+import random
 
 
 class SnakeGame:
     def __init__(self, width, height, obstacles):
         self.pen = None
         self.head = None
+        self.segments = []
         self.food = None
         self.window = None
         self.width = width
@@ -102,11 +104,80 @@ class SnakeGame:
             x = self.head.xcor()
             self.head.setx(x + 20)
 
+    def is_collision(self, x, y):
+        if self.head.distance(x, y) < 20:
+            return True
+        return False
+
+    def is_collision_with_border(self):
+        if self.head.xcor() > self.width / 2 - 20 or self.head.xcor() < -self.width / 2 + 20 or self.head.ycor() > self.height / 2 - 20 or self.head.ycor() < -self.height / 2 + 20:
+            return True
+        return False
+
+    def end_game(self):
+        self.pen.clear()
+        self.pen.write(f"GAME OVER!")
+
     def start_game(self):
         self.window.listen()
         self.configure_key_bindings()
 
         while True:
             self.window.update()
+            # self.move()
+            # time.sleep(self.delay)
+
+            # collision with border
+            if self.is_collision_with_border():
+                time.sleep(1)
+                self.end_game()
+
+            # collision with obstacles
+            for obstacle in self.obstacles:
+                if self.is_collision(obstacle["x"], obstacle["y"]):
+                    time.sleep(1)
+                    self.end_game()
+
+            # collision with food
+            if self.is_collision(self.food.xcor(), self.food.ycor()):
+                # move food to random location
+                x_food = random.randint(-self.width / 2 + 20, self.width / 2 - 20)
+                y_food = random.randint(-self.height / 2 + 20, self.height / 2 - 20)
+                self.food.goto(x_food, y_food)
+
+                # snake go bigger => add a new segment to the snake
+                new_segment = turtle.Turtle()
+                new_segment.speed(0)
+                new_segment.shape("square")
+                new_segment.color("grey")
+                new_segment.penup()
+                self.segments.append(new_segment)
+
+                self.delay -= 0.001
+
+                self.score += 10
+                if self.score > self.highest_score:
+                    self.highest_score = self.score
+                self.pen.clear()
+                self.pen.write(f"Score: {self.score}  Highest Score: {self.highest_score}", align="center",
+                               font=("Courier", 24, "normal"))
+
+            # move snake's segments
+            for index in range(len(self.segments) - 1, 0, -1):
+                x = self.segments[index - 1].xcor()
+                y = self.segments[index - 1].ycor()
+                self.segments[index].goto(x, y)
+            if len(self.segments) > 0:
+                x = self.head.xcor()
+                y = self.head.ycor()
+                self.segments[0].goto(x, y)
+
             self.move()
+
+            # collision with snake's body
+            for segment in self.segments:
+                if self.is_collision(segment.xcor(), segment.ycor()):
+                    time.sleep(1)
+                    self.end_game()
+
             time.sleep(self.delay)
