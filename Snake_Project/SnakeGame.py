@@ -40,6 +40,8 @@ class SnakeGame:
             obstacle.penup()
             obstacle.goto(x, y)
 
+
+    def init_food(self):
         self.food = turtle.Turtle()
         self.food.speed(0)
         self.food.shape("circle")
@@ -117,14 +119,20 @@ class SnakeGame:
         return False
 
     def end_game(self):
+        # self.window.bgcolor("black")
+
         self.pen.clear()
+        self.pen.color("blue")
         self.pen.write(f"GAME OVER! Highest Score = {self.highest_score}", align="center",
-                       font=("Courier", 24, "normal"))
+                       font=("Courier", 24, "underline", "bold"))
 
         self.pen.goto(0, -50)
-        self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center", font=("Courier", 24, "normal"))
+        self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center", font=("Courier", 24, "underline", "bold"))
+
+        self.pen.color("white")
 
         self.window.listen()
+
         def restart_game():
             time.sleep(1)
             self.head.goto(0, 0)
@@ -134,6 +142,8 @@ class SnakeGame:
             for segment in self.segments:
                 segment.goto(1000, 1000)
             self.segments.clear()
+
+            self.food.goto(1000, 1000)
 
             # reset score
             self.score = 0
@@ -155,10 +165,13 @@ class SnakeGame:
             self.window.bye()
             exit(0)
 
-        self.window.onkeypress(restart_game, "c")
-        self.window.onkeypress(exit_game, "e")
+        self.window.onkey(restart_game, "c")
+        self.window.onkey(exit_game, "e")
+        self.window.mainloop()
 
     def start_game(self):
+        self.init_food()
+        self.window.bgcolor("green")
         self.window.listen()
         self.configure_key_bindings()
 
