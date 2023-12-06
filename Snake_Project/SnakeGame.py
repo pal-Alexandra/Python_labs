@@ -1,6 +1,7 @@
 import time
 import turtle
 import random
+from PIL import Image
 
 
 class SnakeGame:
@@ -27,25 +28,33 @@ class SnakeGame:
     def init_board(self):
         self.window = turtle.Screen()
         self.window.title("Snake Game")
-        self.window.bgcolor("green")
         self.window.setup(width=self.width, height=self.height)
+
+        original_image = Image.open("background.gif")
+        resized_image = original_image.resize((self.width, self.height))
+        resized_image.save("resized_background.gif")
+        self.window.bgpic("resized_background.gif")
+
         self.window.tracer(0)
 
         for obstacle in self.obstacles:
             x, y = obstacle['x'], obstacle['y']
             obstacle = turtle.Turtle()
             obstacle.speed(0)
-            obstacle.shape("square")
-            obstacle.color("red")
+            # obstacle.shape("square")
+            # obstacle.color("red")
+            self.window.register_shape("wall.gif")
+            obstacle.shape("wall.gif")
             obstacle.penup()
             obstacle.goto(x, y)
-
 
     def init_food(self):
         self.food = turtle.Turtle()
         self.food.speed(0)
-        self.food.shape("circle")
-        self.food.color("yellow")
+        # self.food.shape("circle")
+        # self.food.color("yellow")
+        self.window.register_shape("food.gif")
+        self.food.shape("food.gif")
         self.food.penup()
         self.food.goto(0, 100)
 
@@ -53,7 +62,8 @@ class SnakeGame:
         self.head = turtle.Turtle()
         self.head.speed(0)
         self.head.shape("square")
-        self.head.color("black")
+        self.head.color("dark green")
+        self.head.shapesize(1.3, 1.3)
         self.head.penup()
         self.head.goto(0, 0)
         self.head.direction = "stop"
@@ -119,15 +129,14 @@ class SnakeGame:
         return False
 
     def end_game(self):
-        # self.window.bgcolor("black")
-
         self.pen.clear()
         self.pen.color("blue")
         self.pen.write(f"GAME OVER! Highest Score = {self.highest_score}", align="center",
                        font=("Courier", 24, "underline", "bold"))
 
         self.pen.goto(0, -50)
-        self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center", font=("Courier", 24, "underline", "bold"))
+        self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center",
+                       font=("Courier", 24, "underline", "bold"))
 
         self.pen.color("white")
 
@@ -171,7 +180,6 @@ class SnakeGame:
 
     def start_game(self):
         self.init_food()
-        self.window.bgcolor("green")
         self.window.listen()
         self.configure_key_bindings()
 
@@ -204,7 +212,8 @@ class SnakeGame:
                 new_segment = turtle.Turtle()
                 new_segment.speed(0)
                 new_segment.shape("square")
-                new_segment.color("grey")
+                new_segment.color("lime green")
+                new_segment.shapesize(1.3, 1.3)
                 new_segment.penup()
                 self.segments.append(new_segment)
 
