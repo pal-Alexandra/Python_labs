@@ -131,8 +131,8 @@ class SnakeGame:
     def end_game(self):
         self.pen.clear()
         self.pen.color("blue")
-        self.pen.write(f"GAME OVER! Highest Score = {self.highest_score}", align="center",
-                       font=("Courier", 24, "underline", "bold"))
+        self.pen.write(f"GAME OVER! Your score: {self.score} Highest Score: {self.highest_score}", align="center",
+                       font=("Courier", 20, "underline", "bold"))
 
         self.pen.goto(0, -50)
         self.pen.write(f"Press 'C' play again or 'E' to exit game", align="center",
@@ -171,8 +171,14 @@ class SnakeGame:
             self.start_game()
 
         def exit_game():
-            self.window.bye()
-            exit(0)
+            # self.window.bye()
+            # exit(0)
+            self.game_is_over = True
+            self.pen.clear()
+            self.pen.goto(0, 0)
+            self.pen.color("blue")
+            self.pen.write(f"Highest Score: {self.highest_score}", align="center",
+                           font=("Courier", 24, "underline", "bold"))
 
         self.window.onkey(restart_game, "c")
         self.window.onkey(exit_game, "e")
