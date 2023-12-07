@@ -118,6 +118,11 @@ class SnakeGame:
             x = self.head.xcor()
             self.head.setx(x + 20)
 
+    def is_collision_with_obstacle(self, x, y):
+        if self.head.distance(x, y) < 25:
+            return True
+        return False
+
     def is_collision(self, x, y):
         if self.head.distance(x, y) < 20:
             return True
@@ -202,7 +207,7 @@ class SnakeGame:
 
             # collision with obstacles
             for obstacle in self.obstacles:
-                if self.is_collision(obstacle["x"], obstacle["y"]):
+                if self.is_collision_with_obstacle(obstacle["x"], obstacle["y"]):
                     time.sleep(1)
                     self.game_is_over = True
                     self.end_game()
