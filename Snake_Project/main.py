@@ -6,6 +6,7 @@ from SnakeGame import SnakeGame
 
 
 def read_file(file_name):
+    """Reads a json file and returns the width, height and obstacles of the game"""
 
     try:
         with open(file_name, 'r') as f:

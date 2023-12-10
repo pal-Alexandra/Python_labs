@@ -26,6 +26,14 @@ class SnakeGame:
         self.delay = 0.1
 
     def init_board(self):
+        """
+        Initialize the board and set images for background and obstacles. It sets the:
+            width of the board
+            height of the board
+            obstacles
+
+        :return: None
+        """
         self.window = turtle.Screen()
         self.window.title("Snake Game")
         self.window.setup(width=self.width, height=self.height)
@@ -49,6 +57,11 @@ class SnakeGame:
             obstacle.goto(x, y)
 
     def init_food(self):
+        """
+        Initialize the food for the snake. It sets the coordinates of the food at the beginning of the game and sets
+        the image for food.
+        :return: None
+        """
         self.food = turtle.Turtle()
         self.food.speed(0)
         # self.food.shape("circle")
@@ -59,6 +72,10 @@ class SnakeGame:
         self.food.goto(0, 100)
 
     def init_snake(self):
+        """
+        Initialize the snake. It sets the coordinates of the snake at the beginning of the game.
+        :return: None
+        """
         self.head = turtle.Turtle()
         self.head.speed(0)
         self.head.shape("square")
@@ -69,6 +86,10 @@ class SnakeGame:
         self.head.direction = "stop"
 
     def init_pen(self):
+        """
+        Initialize the pen. It sets the coordinates of the pen at the beginning of the game.
+        :return: None
+        """
         self.pen = turtle.Turtle()
         self.pen.speed(0)
         self.pen.shape("square")
@@ -80,28 +101,52 @@ class SnakeGame:
         self.pen.goto(x, y)
 
     def go_up(self):
+        """
+        Change the direction of the snake to up.
+        :return: None
+        """
         if self.head.direction != "down":
             self.head.direction = "up"
 
     def go_down(self):
+        """
+        Change the direction of the snake to down.
+        :return: None
+        """
         if self.head.direction != "up":
             self.head.direction = "down"
 
     def go_left(self):
+        """
+        Change the direction of the snake to left.
+        :return: None
+        """
         if self.head.direction != "right":
             self.head.direction = "left"
 
     def go_right(self):
+        """
+        Change the direction of the snake to right.
+        :return: None
+        """
         if self.head.direction != "left":
             self.head.direction = "right"
 
     def configure_key_bindings(self):
+        """
+        Configure the key controls for the game.
+        :return: None
+        """
         self.window.onkeypress(self.go_up, "w")
         self.window.onkeypress(self.go_down, "s")
         self.window.onkeypress(self.go_left, "a")
         self.window.onkeypress(self.go_right, "d")
 
     def move(self):
+        """
+        Move the snake in the direction of the head.
+        :return: None
+        """
         if self.head.direction == "up":
             y = self.head.ycor()
             self.head.sety(y + 20)
@@ -119,6 +164,12 @@ class SnakeGame:
             self.head.setx(x + 20)
 
     def is_collision_with_obstacle(self, x, y):
+        """
+        Check if the snake's head is colliding with an obstacle.
+        :param x: coordinate x of the obstacle
+        :param y: coordinate y of the obstacle
+        :return: None
+        """
         if self.head.distance(x, y) < 25:
             return True
         return False
@@ -129,11 +180,19 @@ class SnakeGame:
         return False
 
     def is_collision_with_border(self):
+        """
+        Check if the snake's head is colliding with the border.
+        :return: None
+        """
         if self.head.xcor() > self.width / 2 - 20 or self.head.xcor() < -self.width / 2 + 20 or self.head.ycor() > self.height / 2 - 20 or self.head.ycor() < -self.height / 2 + 20:
             return True
         return False
 
     def end_game(self):
+        """
+        Logic for ending the game: show the score, highest score and ask the user if he wants to play again or exit the game.
+        :return: None
+        """
         self.pen.clear()
         self.pen.color("blue")
         self.pen.write(f"GAME OVER! Your score: {self.score} Highest Score: {self.highest_score}", align="center",
@@ -148,6 +207,10 @@ class SnakeGame:
         self.window.listen()
 
         def restart_game():
+            """
+            Logic for restarting the game. Reset the snake's head, segments, food, score, delay and pen position.
+            :return:
+            """
             time.sleep(1)
             self.head.goto(0, 0)
             self.head.direction = "stop"
@@ -176,6 +239,10 @@ class SnakeGame:
             self.start_game()
 
         def exit_game():
+            """
+            Logic for exiting the game: showing the highest score and ening the game.
+            :return:
+            """
             # self.window.bye()
             # exit(0)
             self.game_is_over = True
@@ -190,6 +257,11 @@ class SnakeGame:
         self.window.mainloop()
 
     def start_game(self):
+        """
+        Logic for starting the game: initialize the food, listen for key bindings, configure the key bindings,
+        check for collisions with border, obstacles, food, snake's body, move the snake's segments.
+        :return: None
+        """
         self.init_food()
         self.window.listen()
         self.configure_key_bindings()
