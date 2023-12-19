@@ -8,6 +8,7 @@ class SnakeGame:
     def __init__(self, width, height, obstacles):
         self.pen = None
         self.head = None
+        self.tail = None
         self.segments = []
         self.food = None
         self.window = None
@@ -85,6 +86,15 @@ class SnakeGame:
         self.head.goto(0, 0)
         self.head.direction = "stop"
 
+        self.tail = turtle.Turtle()
+        self.tail.speed(0)
+        self.tail.shape("square")
+        self.tail.color("yellow")
+        self.tail.shapesize(1.3, 1.3)
+        self.tail.penup()
+        self.tail.goto(0, -20)
+
+
     def init_pen(self):
         """
         Initialize the pen. It sets the coordinates of the pen at the beginning of the game.
@@ -151,17 +161,30 @@ class SnakeGame:
             y = self.head.ycor()
             self.head.sety(y + 20)
 
-        if self.head.direction == "down":
+            if len(self.segments) == 0:
+                self.tail.goto(self.head.xcor(), self.head.ycor() - 18)
+
+        elif self.head.direction == "down":
             y = self.head.ycor()
             self.head.sety(y - 20)
 
-        if self.head.direction == "left":
+            if len(self.segments) == 0:
+                # Set the initial position of the tail to be the first segment
+                self.tail.goto(self.head.xcor(), self.head.ycor() + 18)
+
+        elif self.head.direction == "left":
             x = self.head.xcor()
             self.head.setx(x - 20)
 
-        if self.head.direction == "right":
+            if len(self.segments) == 0:
+                self.tail.goto(self.head.xcor() + 18, self.head.ycor())
+
+        elif self.head.direction == "right":
             x = self.head.xcor()
             self.head.setx(x + 20)
+
+            if len(self.segments) == 0:
+                self.tail.goto(self.head.xcor() - 18, self.head.ycor())
 
     def is_collision_with_obstacle(self, x, y):
         """
@@ -213,6 +236,7 @@ class SnakeGame:
             """
             time.sleep(1)
             self.head.goto(0, 0)
+            self.tail.goto(0, -20)
             self.head.direction = "stop"
 
             # hide the segments
@@ -311,6 +335,9 @@ class SnakeGame:
                                font=("Courier", 24, "normal"))
 
             # move snake's segments
+            if len(self.segments) > 0:
+                self.tail.goto(self.segments[-1].xcor(), self.segments[-1].ycor())
+
             for index in range(len(self.segments) - 1, 0, -1):
                 x = self.segments[index - 1].xcor()
                 y = self.segments[index - 1].ycor()
@@ -323,9 +350,12 @@ class SnakeGame:
             self.move()
 
             # collision with snake's body
-            for segment in self.segments:
-                if self.is_collision(segment.xcor(), segment.ycor()):
+            for index in range(1, len(self.segments)):
+                if self.is_collision(self.segments[index].xcor(), self.segments[index].ycor()):
                     time.sleep(1)
                     self.end_game()
+            if self.head.distance(self.tail.xcor(), self.tail.ycor()) < 20 and len(self.segments) > 0:
+                time.sleep(1)
+                self.end_game()
 
             time.sleep(self.delay)
